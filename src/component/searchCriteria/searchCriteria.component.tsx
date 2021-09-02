@@ -48,32 +48,16 @@ export const SearchCriteria =
       return fallback;
     };
 
-    const [searchTermInput, setSearchTermInput] = useState<string>(getSearchCriteriaFromCache("searchTerm", ""));
-    const [searchTerm, setSearchTerm] = useState<string>(getSearchCriteriaFromCache("searchTerm", ""));
+    const [searchTermInput, setSearchTermInput] = useState<string>("");
+    const [searchTerm, setSearchTerm] = useState<string>("");
     const [orderBy, setOrderBy] = useState<OrderBy>(getSearchCriteriaFromCache("orderBy", OrderBy.DateAdded));
     const [regions, setRegions] = useState<string[]>(getSearchCriteriaFromCache("regions", []));
 
-    const [eventDateFrom, setEventDateFrom] = useState<moment.Moment>(
-      getSearchCriteriaFromCache(
-        "eventDateFrom",
-        moment().startOf("month"),
-        (value) => moment(value)));
-    const [eventDateTo, setEventDateTo] = useState<moment.Moment>(
-      getSearchCriteriaFromCache(
-        "eventDateTo",
-        moment().endOf("month"),
-        (value) => moment(value)));
+    const [eventDateFrom, setEventDateFrom] = useState<moment.Moment>(moment("01/08/2021", "DD/MM/YYYY").startOf("month"));
+    const [eventDateTo, setEventDateTo] = useState<moment.Moment>(moment().endOf("month"));
 
-    const [addedDateFrom, setAddedDateFrom] = useState<moment.Moment>(
-      getSearchCriteriaFromCache(
-        "addedDateFrom",
-        moment().startOf("month"),
-        (value) => moment(value)));
-    const [addedDateTo, setAddedDateTo] = useState<moment.Moment>(
-      getSearchCriteriaFromCache(
-        "addedDateTo",
-        moment().endOf("month"),
-        (value) => moment(value)));
+    const [addedDateFrom, setAddedDateFrom] = useState<moment.Moment>(moment("01/08/2021", "DD/MM/YYYY").startOf("month"));
+    const [addedDateTo, setAddedDateTo] = useState<moment.Moment>(moment().endOf("month"));
 
     React.useImperativeHandle(ref, () => ({
       reset: () => {
@@ -81,9 +65,9 @@ export const SearchCriteria =
         setSearchTermInput("");
         setOrderBy(OrderBy.DateAdded);
         setRegions([]);
-        setEventDateFrom(moment().startOf("month"));
+        setEventDateFrom(moment("01/08/2021", "DD/MM/YYYY").startOf("month"));
         setEventDateTo(moment());
-        setAddedDateFrom(moment().startOf("month"));
+        setAddedDateFrom(moment("01/08/2021", "DD/MM/YYYY").startOf("month"));
         setAddedDateTo(moment());
       },
     }), []);
