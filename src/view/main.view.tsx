@@ -9,7 +9,6 @@ import { ILocationOfInterest } from "../interface/ILocationOfInterest.interface"
 import { SearchPage } from "../pages/search/search.page";
 import { LoadingPage } from "../pages/loading/loading.page";
 import { ErrorPage } from "../pages/error/error.page";
-import { AboutPage } from "../pages/about/about.page";
 
 export const MainView = () => {
   const [locations, setLocations] = React.useState<ILocationOfInterest[]>([]);
@@ -43,12 +42,9 @@ export const MainView = () => {
     <>
       <HashRouter>
         <Switch>
-          <Route path="/" exact render={() => null} />
-          <Route path="/about" component={AboutPage} />
+          <Route path="/" exact render={() => <SearchPage locations={locations} />} />
           <Redirect to="/" />
         </Switch>
-
-        <SearchPage locations={locations} />
       </HashRouter>
     </>
   );

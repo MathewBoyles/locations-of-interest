@@ -5,7 +5,11 @@ import "./navbar.scss";
 import { Logo } from "../logo/logo.component";
 import { NavLink } from "react-router-dom";
 
-export const Navbar = () => {
+export interface INavbarProps {
+  onAboutClick: () => void;
+}
+
+export const Navbar: React.FunctionComponent<INavbarProps> = ({ onAboutClick }) => {
   const variation = window.location.search.includes("syl=true") ? "SYL" : "LOI";
 
   return (
@@ -24,10 +28,14 @@ export const Navbar = () => {
         </li>
 
         <li className="nav__links__item">
-          <NavLink
-            to="/about"
-            className="nav__links__item__link"
-            activeClassName="nav__links__item__link--active">About</NavLink>
+          <a
+            href="#"
+            onClick={(ev) => {
+              ev.preventDefault();
+              onAboutClick();
+            }}
+            aria-label="Open About modal"
+            className="nav__links__item__link">About</a>
         </li>
       </ul>
     </nav>

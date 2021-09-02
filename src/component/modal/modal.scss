@@ -3,6 +3,11 @@
 .modal {
   font-family: $modal-font-family;
 
+  &--hidden,
+  &[aria-hidden] {
+    display: none;
+  }
+
   &__backdrop {
     background: $colour-black;
     cursor: pointer;

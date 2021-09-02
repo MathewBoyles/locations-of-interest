@@ -1,5 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 
 import { Navbar } from "./navbar.component";
 import { HashRouter } from "react-router-dom";
@@ -12,5 +13,5 @@ export default {
 
 export const Default: ComponentStory<typeof Navbar> = () =>
   <HashRouter>
-    <Navbar />
+    <Navbar onAboutClick={action("onAboutClick")} />
   </HashRouter>;

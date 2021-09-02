@@ -15,6 +15,7 @@
     "@types/react-select": "^4.0.17",
     "@types/reflect-metadata": "^0.1.0",
     "@types/reflux": "^6.4.2",
+    "a11y-dialog": "^7.2.0",
     "babel-loader": "^8.1.0",
     "bootstrap": "^4.5.0",
     "copy-webpack-plugin": "^6.4.1",

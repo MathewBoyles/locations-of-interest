@@ -1,24 +1,25 @@
 import * as React from "react";
-import { ReactNode } from "react";
 
-import { AuthStore } from "../../store/auth/authStore.store";
-import { AppComponent } from "../appComponent/appComponent.component";
+import { About } from "../about/about.component";
+import { IModalFunctions, Modal } from "../modal/modal.component";
 import { Navbar } from "../navbar/navbar.component";
-import { SearchShoutout } from "../searchShoutout/searchShoutout.component";
 
-export class Page extends AppComponent {
-  constructor(props: {}) {
-    super(props);
+export const Page: React.FunctionComponent = ({ children }) => {
+  const [aboutRef, setAboutRef] = React.useState<IModalFunctions | null>(null);
 
-    this.stores = [AuthStore];
-  }
+  return (
+    <>
+      <Modal
+        ref={setAboutRef}
+        title="About">
+        <About />
+      </Modal>
 
-  public render(): ReactNode {
-    return (
-      <>
-        <Navbar />
-        {this.props.children}
-      </>
-    );
-  }
+      <Navbar onAboutClick={() => {
+        if (aboutRef) aboutRef.show();
+      }} />
+
+      {children}
+    </>
+  );
 }

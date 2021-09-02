@@ -1,21 +1,50 @@
 import * as React from "react";
+import A11yDialog from "a11y-dialog";
 
 import "./modal.scss";
 
 export interface IModalProps {
   title: string;
-  onClose: () => void;
+  children: React.ReactNode;
 }
 
-export const Modal: React.FunctionComponent<IModalProps> = ({ title, onClose, children }) => {
+export interface IModalFunctions {
+  show: () => void;
+}
+
+export const Modal = React.forwardRef<IModalFunctions, IModalProps>(({ title, children }, ref) => {
+  const [modalRef, setModalRef] = React.useState<HTMLElement | null>(null);
+  const [dialog, setDialog] = React.useState<A11yDialog | null>(null);
+
+  React.useEffect(() => {
+    if (!modalRef) return;
+    setDialog(new A11yDialog(modalRef));
+  }, [modalRef]);
+
+  const hideModal = () => {
+    if (dialog) {
+      dialog.hide();
+    }
+  };
+
+  React.useImperativeHandle(ref, () => ({
+    show: () => {
+      if(dialog) dialog.show();
+    },
+    hide: () => hideModal(),
+  }), [dialog]);
+
   return (
-    <section className="modal">
-      <div className="modal__backdrop" onClick={onClose}>&nbsp;</div>
+    <section className={[
+      "modal",
+      !dialog && "modal--hidden",
+    ].filter((c) => !!c).join(" ")} ref={setModalRef}>
+      <div className="modal__backdrop" onClick={hideModal}>&nbsp;</div>
 
       <div className="modal__container">
         <div className="modal__container__content">
           <div title="Close modal window">
-            <svg viewBox="0 0 82 82" fill="none" xmlns="http://www.w3.org/2000/svg" className="modal__container__content__close" onClick={onClose}>
+            <svg viewBox="0 0 82 82" fill="none" xmlns="http://www.w3.org/2000/svg" className="modal__container__content__close" onClick={hideModal}>
               <g filter="url(#filter0_d)">
                 <rect x="20" y="20" width="42" height="42" rx="10" fill="#FAFAFA"/>
               </g>
@@ -50,4 +79,4 @@ export const Modal: React.FunctionComponent<IModalProps> = ({ title, onClose, ch
       </div>
     </section>
   )
-}
+});
