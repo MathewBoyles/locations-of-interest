@@ -10,6 +10,7 @@ export interface IModalProps {
 
 export interface IModalFunctions {
   show: () => void;
+  hide: () => void;
 }
 
 export const Modal = React.forwardRef<IModalFunctions, IModalProps>(({ title, children }, ref) => {
@@ -18,7 +19,13 @@ export const Modal = React.forwardRef<IModalFunctions, IModalProps>(({ title, ch
 
   React.useEffect(() => {
     if (!modalRef) return;
-    setDialog(new A11yDialog(modalRef));
+
+    const newDialog = new A11yDialog(modalRef);
+    setDialog(newDialog);
+
+    return () => {
+      newDialog.destroy();
+    };
   }, [modalRef]);
 
   const hideModal = () => {
