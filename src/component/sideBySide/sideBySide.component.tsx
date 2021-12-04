@@ -12,7 +12,7 @@ export interface ISideBySideProps {
 
 export const SideBySide: React.FunctionComponent<ISideBySideProps> = ({ selectedBlock, content1, content2, content3 }) => {
   return (
-    <section className={[
+    <main className={[
       "sideBySide",
       selectedBlock ? "sideBySide--has-selected" : "sideBySide--none-selected",
     ].filter((c) => !!c).join(" ")} id="sideBySide">
@@ -31,6 +31,6 @@ export const SideBySide: React.FunctionComponent<ISideBySideProps> = ({ selected
         "sideBySide__block",
         selectedBlock !== 3 && "sideBySide__block--hidden",
       ].filter((c) => !!c).join(" ")}>{content3}</div>
-    </section>
+    </main>
   );
 }

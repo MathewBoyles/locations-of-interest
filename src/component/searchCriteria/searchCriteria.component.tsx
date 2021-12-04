@@ -164,15 +164,19 @@ export const SearchCriteria =
               htmlFor="searchCriteria__order-by"
               className="searchCriteria__list__item__label">Order by</label>
 
-            <Select
-              classNamePrefix="searchCriteria__list__item__select"
-              className="searchCriteria__list__item__select"
+            <select
+              className="searchCriteria__list__item__input"
               placeholder="Order by"
               name="order-by"
-              inputId="searchCriteria__order-by"
-              onChange={(v) => setOrderBy(v ? v.value : OrderBy.DateAdded as OrderBy)}
-              options={orderByOptions}
-              value={orderByOptions.find((o) => o.value === orderBy)} />
+              id="searchCriteria__order-by"
+              onChange={(v) => setOrderBy((v.target ? v.target.value : OrderBy.DateAdded) as OrderBy)}
+              value={orderBy}>
+                {
+                  orderByOptions.map((o) =>
+                    <option value={o.value}>{o.label}</option>
+                  )
+                }
+              </select>
           </div>
 
           <div className="searchCriteria__list__item searchCriteria__list__item--regions">
@@ -198,7 +202,7 @@ export const SearchCriteria =
           </div>
 
           <div className="searchCriteria__list__item searchCriteria__list__item--event-date">
-            <span className="searchCriteria__list__item__label">Date of exposure event</span>
+            <span className="searchCriteria__list__item__label" id="searchCriteria__event-date">Date of exposure event</span>
 
             <div className="searchCriteria__list__item__split">
               <div className="searchCriteria__list__item__split__item">
@@ -212,7 +216,8 @@ export const SearchCriteria =
                   id="searchCriteria__event-date-from"
                   dateFormat={dateFormat}
                   value={eventDateFrom.format(dateFormat)}
-                  onChange={(val: Date) => setEventDateFrom(moment(val))} />
+                  onChange={(val: Date) => setEventDateFrom(moment(val))}
+                  placeholderText="Date of exposure event – from" />
               </div>
 
               <div className="searchCriteria__list__item__split__item">
@@ -226,7 +231,8 @@ export const SearchCriteria =
                   id="searchCriteria__event-date-to"
                   dateFormat={dateFormat}
                   value={eventDateTo.format(dateFormat)}
-                  onChange={(val: Date) => setEventDateTo(moment(val))} />
+                  onChange={(val: Date) => setEventDateTo(moment(val))}
+                  placeholderText="Date of exposure event – to" />
               </div>
             </div>
           </div>
@@ -246,7 +252,8 @@ export const SearchCriteria =
                   id="searchCriteria__added-date-from"
                   dateFormat={dateFormat}
                   value={addedDateFrom.format(dateFormat)}
-                  onChange={(val: Date) => setAddedDateFrom(moment(val))} />
+                  onChange={(val: Date) => setAddedDateFrom(moment(val))}
+                  placeholderText="Date location of interest added to list – from" />
               </div>
 
               <div className="searchCriteria__list__item__split__item">
@@ -260,7 +267,8 @@ export const SearchCriteria =
                   id="searchCriteria__added-date-to"
                   dateFormat={dateFormat}
                   value={addedDateTo.format(dateFormat)}
-                  onChange={(val: Date) => setAddedDateTo(moment(val))} />
+                  onChange={(val: Date) => setAddedDateTo(moment(val))}
+                  placeholderText="Date location of interest added to list – to" />
               </div>
             </div>
           </div>
