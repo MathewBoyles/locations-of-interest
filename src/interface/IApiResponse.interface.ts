@@ -1,9 +1,14 @@
 type DateTime = string;
 
+export enum ExposureType {
+  Close = "Close",
+  Casual = "Casual",
+}
+
 export interface IApiResponseItem {
   eventId: string;
   eventName: string;
-  exposureType: string;
+  exposureType: ExposureType;
   publicAdvice: string;
   location: {
     address: string;

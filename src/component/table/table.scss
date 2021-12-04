@@ -19,7 +19,8 @@
       top: 0;
     }
 
-    tr {
+    &__item,
+    &__header {
       vertical-align: top;
 
       th,
@@ -33,6 +34,39 @@
 
       &:nth-child(odd) {
         background: $colour-pale-grey;
+      }
+    }
+
+    &__item {
+      &__name {
+        &__event {
+          display: inline-block;
+          font-weight: bold;
+          padding-bottom: 4px;
+        }
+
+        &__alert {
+          color: $alert-colour;
+
+          &::before {
+            background: $alert-colour;
+            border-radius: 50%;
+            content: "";
+            display: inline-block;
+            height: 6px;
+            margin: 2px 6px 2px 2px;
+            width: 6px;
+          }
+        }
+      }
+
+      &__contact {
+        display: inline-block;
+        margin-top: 4px;
+      }
+
+      &--alert {
+        background: $alert-background;
       }
     }
   }

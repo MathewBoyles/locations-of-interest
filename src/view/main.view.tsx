@@ -31,8 +31,10 @@ export const MainView = () => {
             properties: {
               id: item.eventId,
               Event: item.eventName,
+              Exposure: item.exposureType,
               Location: item.location.address,
               City: item.location.city,
+              WebForm: item.visibleInWebform,
               Start: item.startDateTime,
               End: item.endDateTime,
               Advice: item.publicAdvice,
