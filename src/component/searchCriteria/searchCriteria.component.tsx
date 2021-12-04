@@ -54,10 +54,10 @@ export const SearchCriteria =
     const [regions, setRegions] = useState<string[]>(getSearchCriteriaFromCache("regions", []));
 
     const [eventDateFrom, setEventDateFrom] = useState<moment.Moment>(moment("01/08/2021", "DD/MM/YYYY").startOf("month"));
-    const [eventDateTo, setEventDateTo] = useState<moment.Moment>(moment().endOf("month"));
+    const [eventDateTo, setEventDateTo] = useState<moment.Moment>(moment());
 
     const [addedDateFrom, setAddedDateFrom] = useState<moment.Moment>(moment("01/08/2021", "DD/MM/YYYY").startOf("month"));
-    const [addedDateTo, setAddedDateTo] = useState<moment.Moment>(moment().endOf("month"));
+    const [addedDateTo, setAddedDateTo] = useState<moment.Moment>(moment());
 
     React.useImperativeHandle(ref, () => ({
       reset: () => {
