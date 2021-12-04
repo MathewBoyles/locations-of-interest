@@ -28,16 +28,7 @@ export const SearchPage: React.FunctionComponent<ISearchPageProps> = ({ location
   const [filteredLocations, setFilteredLocations] = React.useState(locations);
 
   const formatDate = (input: string): moment.Moment => {
-    const dateInputFormat = [
-      "DD/MM/YYYY HH:mm",
-      "YYYY-MM-DD HH:mm:ss"
-    ];
-
-    const selectedFormat = dateInputFormat[
-      input.includes("-") ? 1 : 0
-    ];
-
-    return moment(input, selectedFormat);
+    return moment(input);
   }
 
   const filterLocations = () => {
