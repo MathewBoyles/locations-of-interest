@@ -29,7 +29,7 @@ export const SearchPage: React.FunctionComponent<ISearchPageProps> = ({ location
   const [filteredLocations, setFilteredLocations] = React.useState(locations);
 
   const formatDate = (input: string): moment.Moment => {
-    return moment(input);
+    return moment.utc(input).tz("Pacific/Auckland");
   }
 
   const filterLocations = () => {
@@ -84,7 +84,7 @@ export const SearchPage: React.FunctionComponent<ISearchPageProps> = ({ location
         if (!searchCriteria.addedDateFrom) return true;
         if (!location.properties.Added) return true;
 
-        const dateMoment = formatDate(location.properties.Added);
+        const dateMoment = formatDate(location.properties.End);
 
         return dateMoment.isSameOrBefore(searchCriteria.eventDateTo, "D");
       });
