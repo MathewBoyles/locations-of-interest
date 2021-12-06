@@ -1,4 +1,4 @@
-import moment from "moment";
+import moment from "moment-timezone";
 
 export const displayDate = (input: string, format?: string) => {
   const dateInputFormat = [
@@ -14,7 +14,7 @@ export const displayDate = (input: string, format?: string) => {
     input.includes("-") ? 1 : 0
   ];
 
-  const momentValue = moment(input, selectedFormat);
+  const momentValue = moment.utc(input, selectedFormat).tz("Pacific/Auckland");
 
   return momentValue.format(format || "dddd DD MMMM h:mm a");
 }
