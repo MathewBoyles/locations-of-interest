@@ -9,7 +9,7 @@ export const About: React.FunctionComponent = () => {
         <p>During Level 4 lockdown, we built something that would be useful to ourselves and many others and plug a gap in our COVID-19 response. We found it difficult to find relevant locations of interest in the collection of hundreds. We could search, but as Wellingtonians we often got tired of sifting through "Mount Wellington" locations.</p>
         <p>Locations of Interest is a site aimed to help you find the important COVID exposure information you need to know, faster.</p>
         <p>Using the Ministry of Health's locations of interest data, this tool allows you to better search, filter and sort for what's relevant to you, all neatly tied into a side-by-side map and table view.</p>
-        <p>The site automatically updates with new locations of interest data from a GitHub repo maintained and updated by the Ministry of Health. Locations are being updated by the Ministry on a two-hourly basis between 8am and 8pm.</p>
+        <p>The site automatically updates with new locations of interest data from an API maintained and updated by the Ministry of Health. The data source is expected to update hourly. Locations are removed after 14 days.</p>
         <p>This project is made by two Wellingtonians and is not affiliated with the Ministry of Health or Unite Against COVID - just a fun project to help our fellow Kiwis. 💛</p>
       </div>
 

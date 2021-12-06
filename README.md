@@ -12,7 +12,7 @@ Locations of Interest is a site aimed to help you find the important COVID expos
 
 Using the Ministry of Health's locations of interest data, this tool allows you to better search, filter and sort for what's relevant to you, all neatly tied into a side-by-side map and table view.
 
-The site automatically updates with new locations of interest data from a GitHub repo maintained and updated by the Ministry of Health. Locations are being updated by the Ministry on a two-hourly basis between 8am and 8pm.
+The site automatically updates with new locations of interest data from an API maintained and updated by the Ministry of Health. The data source is expected to update hourly. Locations are removed after 14 days.
 
 This project is made by two Wellingtonians and is not affiliated with the Ministry of Health or Unite Against COVID - just a fun project to help our fellow Kiwis. 💛
 
