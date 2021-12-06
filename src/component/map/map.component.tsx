@@ -37,13 +37,7 @@ export const Map: React.FunctionComponent<IMapProps> = ({ locations, filteredLoc
 
   React.useEffect(() => {
     if (ref) {
-      if ((window as any).MAPS_READY) {
-        renderMap();
-      } else {
-        document.addEventListener("MapsReady", () => {
-          renderMap();
-        });
-      }
+      renderMap();
     }
   }, [ref]);
 
