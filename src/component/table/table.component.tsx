@@ -58,14 +58,7 @@ export const Table: React.FunctionComponent<ITableProps> = ({ locations, searchT
                 </td>
                 <td>{displayDate(location.properties.Start)} – {displayDate(location.properties.End, "h:mm a")}</td>
                 <td>
-                  <span dangerouslySetInnerHTML={{
-                  __html:
-                    location.properties.Advice
-                    .replace("Call Healthline", `<a href="tel:${healthlinePhone}" class="table__table__item__healthline">Call Healthline</a>`)
-                    .replace("Self-isolate", `<strong>Self-isolate</strong>`)
-                    .replace("Isolate", `<strong>Isolate</strong>`)
-                    .replace("isolate", `<strong>isolate</strong>`),
-                  }}></span>
+                  <span>{location.properties.Advice}</span>
 
                   {
                     location.properties.WebForm &&

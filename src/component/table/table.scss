@@ -21,6 +21,7 @@
 
     &__item,
     &__header {
+      background: $event-item-default-background;
       vertical-align: top;
 
       th,
@@ -33,7 +34,7 @@
       }
 
       &:nth-child(odd) {
-        background: $colour-pale-grey;
+        background: $event-item-alternative-background;
       }
     }
 
@@ -66,9 +67,10 @@
       }
 
       &--alert {
-        th,
-        td {
-          background: $alert-background;
+        background: $event-item-alert-background;
+
+        &:nth-child(odd) {
+          background: $event-item-alert-background;
         }
       }
     }
