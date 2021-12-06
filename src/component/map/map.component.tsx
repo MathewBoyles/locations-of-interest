@@ -8,18 +8,18 @@ import "./map.scss";
 const DISABLE_MAP = window.location.hostname === "localhost";
 
 export interface IMapProps {
+  filteredLocations: ILocationOfInterest[];
   locations: ILocationOfInterest[];
   onMarkerClick: (location: ILocationOfInterest) => void;
 }
 
-export const Map: React.FunctionComponent<IMapProps> = ({ locations, onMarkerClick }) => {
+export const Map: React.FunctionComponent<IMapProps> = ({ locations, filteredLocations, onMarkerClick }) => {
   if (DISABLE_MAP) {
     return <Message>Map temporarily disabled.</Message>;
   }
 
   const [ref, setRef] = React.useState<HTMLElement | null>(null);
   const [map, setMap] = React.useState<google.maps.Map>();
-  const [_, setMarkers] = React.useState<google.maps.Marker[]>([]);
 
   const center = {
     lat: -41.42149185194225,
@@ -50,26 +50,23 @@ export const Map: React.FunctionComponent<IMapProps> = ({ locations, onMarkerCli
 
   React.useEffect(() => {
     if (map) {
-      const newMarkers =
-        locations.map((location) => {
-          const marker = new google.maps.Marker({
-            position: new google.maps.LatLng(location.geometry.coordinates[1], location.geometry.coordinates[0]),
-            map,
-          });
+      locations.map((location) => {
+        const filteredItem = filteredLocations.find((f) => f.properties.id === location.properties.id);
 
-          marker.addListener("click", async () => {
-            onMarkerClick(location);
-          });
-
-          return marker;
-        });
-
-      setMarkers((ms) => {
-        ms.forEach((m) => m.setMap(null));
-        return newMarkers;
+        if (location.marker) {
+          location.marker.setMap(filteredItem ? map : null);
+        }
       });
     }
-  }, [map, locations])
+  }, [map, locations, filteredLocations])
+
+  React.useEffect(() => {
+    locations.map((location) => {
+      if (location.marker && onMarkerClick) {
+        location.marker.addListener("click", () => onMarkerClick(location));
+      }
+    });
+  }, [locations, onMarkerClick]);
 
   return (
     <section className="map" id="map" ref={setRef}></section>

@@ -46,7 +46,10 @@ export const MainView = () => {
                 item.location.longitude,
                 item.location.latitude,
               ],
-            }
+            },
+            marker: new google.maps.Marker({
+              position: new google.maps.LatLng(item.location.latitude, item.location.longitude),
+            })
           })),
         );
       } else {

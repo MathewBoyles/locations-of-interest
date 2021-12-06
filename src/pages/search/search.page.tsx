@@ -180,7 +180,7 @@ export const SearchPage: React.FunctionComponent<ISearchPageProps> = ({ location
 
       <SideBySide
         selectedBlock={selectedBlock}
-        content1={<Map locations={filteredLocations} onMarkerClick={viewDetails} />}
+        content1={<Map filteredLocations={filteredLocations} locations={locations} onMarkerClick={viewDetails} />}
         content2={
           filteredLocations.length === 0
             ? <Message>{"No locations were found based on your query."}</Message>

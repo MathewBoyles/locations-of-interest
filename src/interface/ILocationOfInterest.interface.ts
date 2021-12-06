@@ -6,6 +6,7 @@ export interface ILocationOfInterest {
   type: string;
   properties: ILocationOfInterestProperties;
   geometry: ILocationOfInterestGeometry;
+  marker?: google.maps.Marker;
 }
 
 export interface ILocationOfInterestProperties {
