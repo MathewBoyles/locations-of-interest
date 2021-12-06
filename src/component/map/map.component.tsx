@@ -10,10 +10,9 @@ const DISABLE_MAP = window.location.hostname === "localhost";
 export interface IMapProps {
   filteredLocations: ILocationOfInterest[];
   locations: ILocationOfInterest[];
-  onMarkerClick: (location: ILocationOfInterest) => void;
 }
 
-export const Map: React.FunctionComponent<IMapProps> = ({ locations, filteredLocations, onMarkerClick }) => {
+export const Map: React.FunctionComponent<IMapProps> = ({ locations, filteredLocations }) => {
   if (DISABLE_MAP) {
     return <Message>Map temporarily disabled.</Message>;
   }
@@ -59,14 +58,6 @@ export const Map: React.FunctionComponent<IMapProps> = ({ locations, filteredLoc
       });
     }
   }, [map, locations, filteredLocations])
-
-  React.useEffect(() => {
-    locations.map((location) => {
-      if (location.marker && onMarkerClick) {
-        location.marker.addListener("click", () => onMarkerClick(location));
-      }
-    });
-  }, [locations, onMarkerClick]);
 
   return (
     <section className="map" id="map" ref={setRef}></section>

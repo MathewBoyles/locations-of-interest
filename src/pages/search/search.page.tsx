@@ -25,7 +25,7 @@ export const SearchPage: React.FunctionComponent<ISearchPageProps> = ({ location
   const [selectedBlock, setSelectedBlock] = React.useState(0);
   const [searchRef, setSearchRef] = React.useState<ISearchCriteriaFunctions | null>();
 
-  const [selectedLocation, setSelectedLocation] = React.useState<ILocationOfInterest | null>(null);
+  const [selectedLocations, setSelectedLocations] = React.useState<ILocationOfInterest[]>([]);
   const [filteredLocations, setFilteredLocations] = React.useState(locations);
 
   const formatDate = (input: string): moment.Moment => {
@@ -147,14 +147,24 @@ export const SearchPage: React.FunctionComponent<ISearchPageProps> = ({ location
     }
   }, [searchRef]);
 
-  const viewDetails = (location: ILocationOfInterest) => {
-    setSelectedBlock(3);
-    setSelectedLocation(location);
-  };
-
   React.useEffect(() => {
     filterLocations();
   }, [searchCriteria]);
+
+  React.useEffect(() => {
+    locations.map((location) => {
+      if (location.marker) {
+        location.marker.addListener("click", () => {
+          const eventsAtLocation = locations.filter((l) => {
+            return l.geometry.coordinates.join(",") === location.geometry.coordinates.join(",") && l.properties.Event === location.properties.Event;
+          });
+
+          setSelectedBlock(3);
+          setSelectedLocations(eventsAtLocation);
+        });
+      }
+    });
+  }, [locations]);
 
   return (
     <Page>
@@ -180,20 +190,20 @@ export const SearchPage: React.FunctionComponent<ISearchPageProps> = ({ location
 
       <SideBySide
         selectedBlock={selectedBlock}
-        content1={<Map filteredLocations={filteredLocations} locations={locations} onMarkerClick={viewDetails} />}
+        content1={<Map filteredLocations={filteredLocations} locations={locations} />}
         content2={
           filteredLocations.length === 0
             ? <Message>{"No locations were found based on your query."}</Message>
             : <Table locations={filteredLocations} searchTerm={searchCriteria && searchCriteria.searchTerm || ""} />
         }
         content3={
-          selectedLocation
+          selectedLocations.length
             ?
               <Event
-                location={selectedLocation}
+                location={selectedLocations[0]}
                 onBackClick={() => {
                   setSelectedBlock(1);
-                  setSelectedLocation(null);
+                  setSelectedLocations([]);
                 }} />
             : null
         }

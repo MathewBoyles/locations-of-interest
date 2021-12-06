@@ -11,15 +11,17 @@ export interface ISideBySideProps {
 }
 
 export const SideBySide: React.FunctionComponent<ISideBySideProps> = ({ selectedBlock, content1, content2, content3 }) => {
+  const block = selectedBlock === 3 ? 0 : selectedBlock;
+
   return (
     <main className={[
       "sideBySide",
-      selectedBlock ? "sideBySide--has-selected" : "sideBySide--none-selected",
+      block ? "sideBySide--has-selected" : "sideBySide--none-selected",
     ].filter((c) => !!c).join(" ")} id="sideBySide">
       <div className={[
         "sideBySide__block",
-        selectedBlock !== 1 && "sideBySide__block--default-hidden",
-        selectedBlock && selectedBlock !== 1 && "sideBySide__block--hidden",
+        block !== 1 && "sideBySide__block--default-hidden",
+        block && block !== 1 && "sideBySide__block--hidden",
       ].filter((c) => !!c).join(" ")}>{content1}</div>
 
       <div className={[
