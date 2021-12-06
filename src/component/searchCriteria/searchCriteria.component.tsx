@@ -119,12 +119,21 @@ export const SearchCriteria =
       },
 
       {
-        label: "Event date (newest first)",
+        label: "Exposure date (newest first)",
         value: OrderBy.EventDate,
       },
       {
-        label: "Event date (oldest first)",
+        label: "Exposure date (oldest first)",
         value: OrderBy.EventDateReversed,
+      },
+
+      {
+        label: "Exposure type (close contact first)",
+        value: OrderBy.ExposureClose,
+      },
+      {
+        label: "Exposure type (casual contact first)",
+        value: OrderBy.ExposureCasual,
       },
     ];
 

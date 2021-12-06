@@ -73,7 +73,7 @@ export const Table: React.FunctionComponent<ITableProps> = ({ locations, searchT
                       <br />
                       <a
                         className="table__table__item__contact"
-                        href={`https://tracing.covid19.govt.nz/loi?eventId=${location.properties.id}`}
+                        href={`https://tracing.covid19.govt.nz/loi?eventId=${location.properties.id}&ref=locationsofinterest.co.nz`}
                         target="_blank">Notify Contact Tracers</a>
                     </>
                   }

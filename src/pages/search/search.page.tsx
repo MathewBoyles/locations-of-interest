@@ -14,6 +14,7 @@ import { Footer } from "../../component/footer/footer.component";
 import { ILocationOfInterest } from "../../interface/ILocationOfInterest.interface";
 import { Message } from "../../component/message/message.component";
 import { Event } from "../../component/event/event.component";
+import { ExposureType } from "../../interface/IApiResponse.interface";
 
 export interface ISearchPageProps {
   locations: ILocationOfInterest[];
@@ -93,7 +94,9 @@ export const SearchPage: React.FunctionComponent<ISearchPageProps> = ({ location
         .sort((locationA, locationB) => {
           if (
             searchCriteria.orderBy !== OrderBy.DateAdded &&
-            searchCriteria.orderBy !== OrderBy.DateAddedReversed) return 0;
+            searchCriteria.orderBy !== OrderBy.DateAddedReversed &&
+            searchCriteria.orderBy !== OrderBy.ExposureClose &&
+            searchCriteria.orderBy !== OrderBy.ExposureCasual) return 0;
 
           if (!locationA.properties.Added) return 0;
 
@@ -121,7 +124,18 @@ export const SearchPage: React.FunctionComponent<ISearchPageProps> = ({ location
 
           if (dateA.isBefore(dateB)) return searchCriteria.orderBy === OrderBy.EventDate ? 1 : -1;
           return searchCriteria.orderBy === OrderBy.EventDate ? -1 : 1;
-        });
+        })
+      .sort((locationA, locationB) => {
+        if (
+          searchCriteria.orderBy !== OrderBy.ExposureClose &&
+          searchCriteria.orderBy !== OrderBy.ExposureCasual) return 0;
+
+          const exposureA = locationA.properties.Exposure === ExposureType.Close ? 1 : 0;
+          const exposureB = locationB.properties.Exposure === ExposureType.Close ? 1 : 0;
+
+          if (exposureA > exposureB) return searchCriteria.orderBy === OrderBy.ExposureCasual ? 1 : -1;
+          return searchCriteria.orderBy === OrderBy.ExposureCasual ? -1 : 1;
+      });
 
       setFilteredLocations(orderedBy);
   };

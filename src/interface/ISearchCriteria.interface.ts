@@ -6,6 +6,9 @@ export enum OrderBy {
 
   EventDate = "event-added",
   EventDateReversed = "event-added-reversed",
+
+  ExposureClose = "exposure-close",
+  ExposureCasual = "exposure-casual",
 }
 
 export interface ISearchCriteria {
