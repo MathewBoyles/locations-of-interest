@@ -14,4 +14,12 @@
       color: inherit;
     }
   }
+
+  &__banner {
+    background-color: $theme-colour-lighter;
+    border-radius: $panel-radius;
+    display: inline-block;
+    margin: 16px 0;
+    padding: 16px 32px;
+  }
 }
