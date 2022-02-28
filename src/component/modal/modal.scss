@@ -35,7 +35,7 @@
 
     &__content {
       background: $colour-white;
-      border-radius: 16px;
+      border-radius: $panel-radius;
       box-shadow: $panel-shadow;
       display: flex;
       flex: 1;

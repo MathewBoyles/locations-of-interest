@@ -8,7 +8,7 @@
   margin: 0 0 32px;
 
   &__block {
-    border-radius: 16px;
+    border-radius: $panel-radius;
     box-shadow: $panel-shadow;
     display: flex;
     height: 750px;

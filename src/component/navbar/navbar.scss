@@ -2,7 +2,7 @@
 
 .nav {
   background: $navbar-background;
-  border-radius: 16px;
+  border-radius: $panel-radius;
   box-sizing: border-box;
   font-family: $navbar-font-family;
   font-size: 1rem;
@@ -67,7 +67,7 @@
     text-align: center;
 
     &__logo {
-      border-radius: 16px;
+      border-radius: $panel-radius;
       display: block;
       margin: 0 auto 16px;
 

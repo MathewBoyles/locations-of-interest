@@ -2,7 +2,7 @@
 
 .guidelines-callout {
   background: $callout-background;
-  border-radius: 16px;
+  border-radius: $panel-radius;
   font-family: $callout-font-family;
   font-size: 2rem;
   font-weight: 200;
