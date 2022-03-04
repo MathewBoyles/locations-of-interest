@@ -14,6 +14,7 @@ export const Phase3Page: React.FunctionComponent = () => {
       <SideBySide
         selectedBlock={1}
         content1={<Phase3 />}
+        fullHeight
       />
 
       <Footer />
